@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caminho do Pinguim: Fuga ao Gelo Derretido</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==========================================
+       ECRÃ DE INTRODUÇÃO / MENU INICIAL
+       ========================================== -->
+  <div id="ecra-intro" class="ecra ativo">
+    <div class="intro-conteudo">
+      <h1 class="titulo-jogo">🐧 Caminho do Pinguim</h1>
+      <h2 class="subtitulo-jogo">Fuga ao Gelo Derretido</h2>
+
+      <!-- Vídeo introdutório opcional sobre alterações climáticas -->
+      <div id="area-video">
+        <p class="legenda-video">📽️ Vídeo introdutório (opcional)</p>
+        <video id="video-intro" width="480" height="270" controls>
+          <source src="assets/intro.mp4" type="video/mp4" />
+          <p class="aviso-video">O vídeo introdutório não está disponível. Coloca o ficheiro <em>assets/intro.mp4</em> para o visualizar.</p>
+        </video>
+      </div>
+
+      <!-- História e contexto do jogo -->
+      <div class="caixa-historia">
+        <h3>História</h3>
+        <p>
+          O Ártico está a derreter. O pinguim Polo, separado da sua colónia,
+          precisa de atravessar plataformas de gelo cada vez mais instáveis
+          para regressar a casa em segurança. As alterações climáticas
+          estão a acelerar o degelo, tornando a viagem mais perigosa a cada
+          segundo que passa.
+        </p>
+        <p>
+          <strong>Tema:</strong> Este jogo aborda o impacto das alterações
+          climáticas na biodiversidade do Ártico, onde o aumento das
+          temperaturas ameaça espécies como os pinguins e os ursos polares.
+        </p>
+      </div>
+
+      <!-- Objetivo do jogo -->
+      <div class="caixa-objetivo">
+        <h3>Objetivo</h3>
+        <p>
+          Chega à <strong>colónia segura</strong> no fim de cada nível antes
+          que todas as plataformas derretam. Recolhe <strong>flocos de neve</strong>
+          para abrandar o aquecimento e ganhar pontos.
+        </p>
+      </div>
+
+      <!-- Controlos do jogo -->
+      <div class="caixa-controlos">
+        <h3>Controlos</h3>
+        <div class="grelha-controlos">
+          <span class="tecla">A</span><span>ou</span><span class="tecla">←</span><span>Mover para a esquerda</span>
+          <span class="tecla">D</span><span>ou</span><span class="tecla">→</span><span>Mover para a direita</span>
+          <span class="tecla">Espaço</span><span>ou</span><span class="tecla">↑</span><span>Saltar</span>
+          <span class="tecla">H</span><span></span><span></span><span>Ajuda / Pausa</span>
+          <span class="tecla">M</span><span></span><span></span><span>Som ligado/desligado</span>
+          <span class="tecla">R</span><span></span><span></span><span>Reiniciar</span>
+        </div>
+      </div>
+
+      <!-- Pontuação recorde guardada no localStorage -->
+      <div class="caixa-recorde">
+        <p>Recorde: <span id="recorde-intro">0</span> pontos</p>
+      </div>
+
+      <button id="btn-jogar" class="botao-principal">🎮 Começar a Jogar</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ECRÃ PRINCIPAL DO JOGO (CANVAS)
+       ========================================== -->
+  <div id="ecra-jogo" class="ecra">
+    <!-- Painel superior de informações HUD -->
+    <div id="hud">
+      <div class="hud-item">🐧 <span id="hud-nivel">Nível 1</span></div>
+      <div class="hud-item">⭐ <span id="hud-pontos">0</span></div>
+      <div class="hud-item">🏆 <span id="hud-recorde">0</span></div>
+      <div class="hud-item">
+        🌡️ Temp:
+        <div class="barra-temp-cont">
+          <div id="barra-temp" class="barra-temp"></div>
+        </div>
+        <span id="valor-temp">0°C</span>
+      </div>
+      <div class="hud-item">
+        📍 Progresso:
+        <div class="barra-prog-cont">
+          <div id="barra-prog" class="barra-prog"></div>
+        </div>
+      </div>
+      <div class="hud-item">
+        <button id="btn-ajuda-hud" class="botao-hud" title="Ajuda (H)">❓ Ajuda</button>
+        <button id="btn-som-hud" class="botao-hud" title="Som (M)">🔊</button>
+      </div>
+    </div>
+
+    <!-- Canvas principal onde o jogo é desenhado -->
+    <canvas id="canvas-jogo"></canvas>
+  </div>
+
+  <!-- ==========================================
+       PAINEL DE AJUDA / CONFIGURAÇÕES (sobreposição)
+       ========================================== -->
+  <div id="painel-ajuda" class="ecra-sobreposto oculto">
+    <div class="painel-conteudo">
+      <h2>❓ Ajuda &amp; Configurações</h2>
+
+      <h3>Controlos</h3>
+      <div class="grelha-controlos">
+        <span class="tecla">A / ←</span><span></span><span></span><span>Mover para a esquerda</span>
+        <span class="tecla">D / →</span><span></span><span></span><span>Mover para a direita</span>
+        <span class="tecla">Espaço / ↑</span><span></span><span></span><span>Saltar</span>
+        <span class="tecla">H</span><span></span><span></span><span>Abrir/fechar ajuda</span>
+        <span class="tecla">M</span><span></span><span></span><span>Som ligado/desligado</span>
+        <span class="tecla">R</span><span></span><span></span><span>Reiniciar o jogo</span>
+      </div>
+
+      <h3>Regras</h3>
+      <ul>
+        <li>Salta entre as plataformas de gelo para avançar.</li>
+        <li>As plataformas derretem com o tempo — não demores!</li>
+        <li>Recolhe ❄️ flocos de neve para ganhar pontos e baixar a temperatura.</li>
+        <li>Cair na água ou a temperatura chegar ao máximo significa derrota.</li>
+        <li>Chega ao iglu 🏠 para completar o nível.</li>
+      </ul>
+
+      <h3>🌡️ Sistema de Temperatura</h3>
+      <p>
+        A temperatura sobe automaticamente com o tempo. Quando está alta
+        (zona vermelha), as plataformas derretem muito mais depressa.
+        Recolhe flocos de neve para a reduzir.
+      </p>
+
+      <h3>⚙️ Configurações de Som</h3>
+      <button id="btn-toggle-som" class="botao-secundario">🔊 Som: Ligado</button>
+
+      <button id="btn-fechar-ajuda" class="botao-principal">✔ Continuar o Jogo</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ECRÃ DE FIM DE JOGO (VITÓRIA / DERROTA)
+       ========================================== -->
+  <div id="ecra-fim" class="ecra-sobreposto oculto">
+    <div class="painel-conteudo" id="fim-conteudo">
+      <div id="fim-icone" class="fim-icone">🐧</div>
+      <h2 id="fim-titulo">Fim de Jogo</h2>
+      <p id="fim-mensagem"></p>
+      <p>Pontuação: <strong id="fim-pontos">0</strong></p>
+      <p>Recorde: <strong id="fim-recorde">0</strong></p>
+      <div id="fim-novo-recorde" class="oculto novo-recorde">🏆 Novo Recorde!</div>
+      <div class="botoes-fim">
+        <button id="btn-reiniciar-fim" class="botao-principal">Jogar Novamente</button>
+        <button id="btn-menu-fim" class="botao-secundario">Menu Principal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrega o ficheiro JavaScript principal -->
+  <script src="script.js"></script>
+</body>
+</html>
