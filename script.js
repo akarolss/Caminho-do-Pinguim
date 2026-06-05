@@ -1342,10 +1342,6 @@ function comecarJogo() {
   document.getElementById('ecra-intro').classList.remove('ativo');
   document.getElementById('ecra-jogo').classList.add('ativo');
 
-  // Para o vídeo se estiver a reproduzir
-  const video = document.getElementById('video-intro');
-  try { video.pause(); } catch (e) {}
-
   // Inicia o jogo
   if (!estadoJogo) {
     const canvas = document.getElementById('canvas-jogo');

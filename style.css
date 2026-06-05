@@ -118,36 +118,6 @@ body {
   margin-top: -10px;
 }
 
-/* --- Área de vídeo --- */
-#area-video {
-  width: 100%;
-  background: rgba(0,0,0,0.4);
-  border: 1px solid var(--azul-gelo);
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-}
-
-.legenda-video {
-  margin-bottom: 10px;
-  color: var(--azul-claro);
-  font-size: 0.9rem;
-}
-
-#video-intro {
-  max-width: 100%;
-  border-radius: 8px;
-  background: #000;
-}
-
-.aviso-video {
-  color: #aaa;
-  font-size: 0.85rem;
-  padding: 10px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
-}
-
 /* --- Caixas informativas --- */
 .caixa-historia,
 .caixa-objetivo,

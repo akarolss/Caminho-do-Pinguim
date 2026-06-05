@@ -14,7 +14,6 @@ Controlas o pinguim **Polo**, que precisa de atravessar plataformas de gelo inst
 
 ### Ecrã Inicial
 Quando abres o jogo, aparece o **ecrã de introdução** com:
-- Um vídeo explicativo sobre alterações climáticas (se o ficheiro `assets/intro.mp4` estiver disponível).
 - A história do pinguim Polo.
 - O objetivo e os controlos.
 - O teu recorde pessoal guardado.
@@ -295,17 +294,6 @@ O código é **tolerante a falhas**: se os ficheiros não existirem, os erros s�
 
 ---
 
-## Uso de Vídeo
-
-O elemento `<video>` HTML5 está presente no ecrã de introdução e aponta para `assets/intro.mp4`. O vídeo é **controlado pela interface do browser** (controlos nativos do `<video>`) e não depende de serviços externos. Se o ficheiro não existir, é mostrada uma mensagem informativa.
-
-Quando o jogador clica em "Começar a Jogar", o vídeo é pausado automaticamente via JavaScript:
-```javascript
-document.getElementById('video-intro').pause();
-```
-
----
-
 ## Ciclo de Jogo (Game Loop)
 
 O ciclo de jogo usa `requestAnimationFrame`, que é a forma recomendada para animações no browser — sincroniza com a taxa de atualização do ecrã (geralmente 60fps) e pausa automaticamente quando o separador não está visível, poupando recursos.
@@ -376,21 +364,6 @@ Para o jogo funcionar na sua totalidade, deves criar a pasta `assets/` na mesma 
 
 ---
 
-## Ficheiro de Vídeo
-
-| Ficheiro | Descrição | Formato |
-|---|---|---|
-| `assets/intro.mp4` | Vídeo introdutório sobre alterações climáticas e biodiversidade do Ártico | MP4 (H.264) |
-
-**Sugestões para o vídeo:**
-- Podes usar um vídeo educativo de domínio público ou com licença Creative Commons sobre o derretimento do Ártico.
-- Podes gravar um vídeo explicativo próprio sobre o tema.
-- Fontes sugeridas: [NASA Climate Change](https://climate.nasa.gov), [Wikimedia Commons](https://commons.wikimedia.org).
-
-> **Nota:** Se o ficheiro não existir, o jogo mostra uma mensagem informativa e continua a funcionar normalmente.
-
----
-
 ## Estrutura de Pastas Final
 
 ```
@@ -403,8 +376,7 @@ CaminhoDoPinguim/
     ├── recolha.mp3
     ├── vitoria.mp3
     ├── derrota.mp3
-    ├── musica.mp3
-    └── intro.mp4
+    └── musica.mp3
 ```
 
 ---
