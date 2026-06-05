@@ -8,15 +8,13 @@
 </head>
 <body>
 
-  <!-- ==========================================
-       ECRÃ DE INTRODUÇÃO / MENU INICIAL
-       ========================================== -->
+
   <div id="ecra-intro" class="ecra ativo">
     <div class="intro-conteudo">
       <h1 class="titulo-jogo">🐧 Caminho do Pinguim</h1>
       <h2 class="subtitulo-jogo">Fuga ao Gelo Derretido</h2>
 
-      <!-- História e contexto do jogo -->
+
       <div class="caixa-historia">
         <h3>História</h3>
         <p>
@@ -33,7 +31,7 @@
         </p>
       </div>
 
-      <!-- Objetivo do jogo -->
+
       <div class="caixa-objetivo">
         <h3>Objetivo</h3>
         <p>
@@ -43,7 +41,7 @@
         </p>
       </div>
 
-      <!-- Controlos do jogo -->
+
       <div class="caixa-controlos">
         <h3>Controlos</h3>
         <div class="grelha-controlos">
@@ -56,7 +54,7 @@
         </div>
       </div>
 
-      <!-- Pontuação recorde guardada no localStorage -->
+
       <div class="caixa-recorde">
         <p>Recorde: <span id="recorde-intro">0</span> pontos</p>
       </div>
@@ -65,11 +63,9 @@
     </div>
   </div>
 
-  <!-- ==========================================
-       ECRÃ PRINCIPAL DO JOGO (CANVAS)
-       ========================================== -->
+
   <div id="ecra-jogo" class="ecra">
-    <!-- Painel superior de informações HUD -->
+
     <div id="hud">
       <div class="hud-item">🐧 <span id="hud-nivel">Nível 1</span></div>
       <div class="hud-item">⭐ <span id="hud-pontos">0</span></div>
@@ -93,13 +89,11 @@
       </div>
     </div>
 
-    <!-- Canvas principal onde o jogo é desenhado -->
+
     <canvas id="canvas-jogo"></canvas>
   </div>
 
-  <!-- ==========================================
-       PAINEL DE AJUDA / CONFIGURAÇÕES (sobreposição)
-       ========================================== -->
+
   <div id="painel-ajuda" class="ecra-sobreposto oculto">
     <div class="painel-conteudo">
       <h2>❓ Ajuda &amp; Configurações</h2>
@@ -137,9 +131,7 @@
     </div>
   </div>
 
-  <!-- ==========================================
-       ECRÃ DE FIM DE JOGO (VITÓRIA / DERROTA)
-       ========================================== -->
+
   <div id="ecra-fim" class="ecra-sobreposto oculto">
     <div class="painel-conteudo" id="fim-conteudo">
       <div id="fim-icone" class="fim-icone">🐧</div>
@@ -155,7 +147,7 @@
     </div>
   </div>
 
-  <!-- Carrega o ficheiro JavaScript principal -->
+
   <script src="script.js"></script>
 </body>
 </html>
